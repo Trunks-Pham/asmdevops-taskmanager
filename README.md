@@ -2,7 +2,7 @@
 
 ## 📚 **Giới thiệu**
 
-Dự án **Task Manager App** là một ứng dụng quản lý công việc đơn giản, cung cấp các tính năng **CRUD** (Tạo, Đọc, Cập nhật, Xóa) cho các tác vụ. Ứng dụng được xây dựng với:
+Dự án **Task Manager App** là một ứng dụng quản lý công việc đơn giản, cung cấp các tính năng **CRUD** (Tạo, Xem, Cập nhật, Xóa) cho các tác vụ. Ứng dụng được xây dựng với:
 
 - **Backend**: Golang (Gin Framework)  
 - **Frontend**: React.js  
