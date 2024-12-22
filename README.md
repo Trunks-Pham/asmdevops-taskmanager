@@ -1,7 +1,3 @@
-Dưới đây là nội dung chi tiết cho **README.md** của dự án CRUD quản lý công việc với **Backend Golang**, **Frontend React**, và **Docker**.
-
----
-
 # 📝 **Task Manager App**
 
 ## 📚 **Giới thiệu**
@@ -212,5 +208,3 @@ Dự án này được cấp phép theo [MIT License](https://opensource.org/lic
 - **GitHub**: [github.com/Trunks-Pham](https://github.com/Trunks-Pham)  
 
 ---
-
-Chúc bạn thành công! 🚀✨
