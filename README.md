@@ -47,14 +47,36 @@ task-manager/
 ```
 
 ---
+## 🚀 **Jenkinsfile – Điểm Nổi Bật**  
 
-## ⚙️ **Yêu Cầu Hệ Thống**
+1. **Môi Trường (Environment Variables)**  
+   - Sử dụng biến môi trường `BACKEND_IMAGE` và `FRONTEND_IMAGE` để định nghĩa tên ảnh Docker cho Backend và Frontend.  
 
-- **Docker**: >= 20.x  
-- **Docker Compose**: >= 2.x  
-- **Golang**: >= 1.21 (nếu chạy backend thủ công)  
-- **Node.js**: >= 18.x (nếu chạy frontend thủ công)  
+2. **Các Giai Đoạn (Stages)**  
+   - **Clone Repository:** Sao chép mã nguồn từ nhánh `main` trên GitHub.  
+   - **Build Docker Images:** Xây dựng ảnh Docker cho Backend và Frontend.  
+   - **Push Docker Images:** Đẩy ảnh Docker lên Docker Hub với thông tin xác thực.  
+   - **Deploy to DEV:** Triển khai Backend và Frontend trên môi trường phát triển (DEV) bằng Docker.  
 
+3. **Tích Hợp Kiểm Thử (Testing)**  
+   - Có một giai đoạn kiểm thử (`Run Tests`) để đảm bảo chất lượng mã nguồn.  
+
+4. **Quản Lý Container và Mạng**  
+   - Tạo mạng Docker (`dev`) nếu chưa tồn tại.  
+   - Dừng và khởi chạy lại container Backend và Frontend.  
+
+5. **Thông Báo Trạng Thái Build**  
+   - Sử dụng API Telegram để gửi thông báo kết quả build (thành công/thất bại).  
+
+6. **Dọn Dẹp Workspace**  
+   - Luôn dọn dẹp workspace sau mỗi pipeline (`cleanWs`).  
+
+---  
+
+### 📡 **Tích Hợp Thông Báo Telegram**  
+- Gửi tin nhắn thông báo build thành công hoặc thất bại qua API Telegram.  
+- Tự động cảnh báo cho nhóm phát triển nếu pipeline gặp lỗi.  
+ 
 ---
 
 ## 💻 **Cách Chạy Dự Án**
@@ -73,7 +95,7 @@ task-manager/
    ```
 
 3. **Truy cập ứng dụng:**
-   - Backend: [http://localhost:8080/tasks](http://localhost:8080/tasks)  
+   - Backend: [http://localhost:4000](http://localhost:4000)  
    - Frontend: [http://localhost:3000](http://localhost:3000)  
 
 ---
@@ -86,7 +108,7 @@ cd backend
 go run main.go
 ```
 
-API sẽ hoạt động tại: [http://localhost:8080](http://localhost:8080)  
+API sẽ hoạt động tại: [http://localhost:4000](http://localhost:4000)  
 
 #### ✅ **Chạy Frontend:**
 ```bash
@@ -99,7 +121,7 @@ Frontend sẽ hoạt động tại: [http://localhost:3000](http://localhost:300
 
 ---
 
-## 📡 **API Endpoints**
+## 📦 **API Endpoints**
 
 | Method | Endpoint      | Mô Tả              |
 |--------|---------------|---------------------|
@@ -107,65 +129,6 @@ Frontend sẽ hoạt động tại: [http://localhost:3000](http://localhost:300
 | POST   | /tasks        | Tạo công việc mới     |
 | PUT    | /tasks/:id    | Cập nhật công việc    |
 | DELETE | /tasks/:id    | Xóa công việc         |
-
-**Ví dụ dữ liệu JSON:**
-```json
-{
-  "title": "Học Golang",
-  "description": "Học lập trình backend với Golang",
-  "completed": true
-}
-```
-
----
-
-## 📦 **Dockerfile Chi Tiết**
-
-### 📄 **Backend Dockerfile**
-```dockerfile
-FROM golang:1.21
-
-WORKDIR /app
-COPY . .
-
-RUN go mod tidy
-RUN go build -o main .
-
-EXPOSE 8080
-CMD ["./main"]
-```
-
-### 📄 **Frontend Dockerfile**
-```dockerfile
-FROM node:20
-
-WORKDIR /app
-COPY . .
-
-RUN npm install
-RUN npm run build
-
-EXPOSE 3000
-CMD ["npm", "start"]
-```
-
-### 📄 **docker-compose.yml**
-```yaml
-version: '3'
-
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-```
 
 ---
 
@@ -177,34 +140,9 @@ services:
 
 ---
 
-## 🐞 **Ghi chú về lỗi**
-
-1. **Port conflict**: Kiểm tra xem cổng `8080` và `3000` có đang được sử dụng bởi ứng dụng khác không.  
-2. **Database issues**: Kiểm tra file `tasks.db` được tạo đúng cách.  
-3. **Frontend API Errors**: Kiểm tra biến môi trường API URL trỏ đúng Backend.  
-
----
-
-## 📜 **License**
-
-Dự án này được cấp phép theo [MIT License](https://opensource.org/licenses/MIT).
-
----
-
-## 🤝 **Đóng Góp**
-
-1. Fork dự án  
-2. Tạo branch mới: `git checkout -b feature/your-feature`  
-3. Commit thay đổi: `git commit -m 'Add new feature'`  
-4. Push branch: `git push origin feature/your-feature`  
-5. Tạo Pull Request  
-
----
-
 ## 📞 **Liên Hệ**
 
-- **Tác giả**: Phạm Minh Thảo (Trunks Phạm)  
-- **Email**: minhthaopham230104@gmail.com
+- **Tác giả**: Phạm Minh Thảo  
+- **Email**: minhthaopham230104@gmail.com  
 - **GitHub**: [github.com/Trunks-Pham](https://github.com/Trunks-Pham)  
-
----
+```
