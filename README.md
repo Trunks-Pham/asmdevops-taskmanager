@@ -45,7 +45,6 @@ task-manager/
 │
 └── docker-compose.yml # Docker Compose configuration
 ```
-
 ---
 ## 🚀 **Jenkinsfile – Điểm Nổi Bật**  
 
@@ -72,6 +71,10 @@ task-manager/
    - Luôn dọn dẹp workspace sau mỗi pipeline (`cleanWs`).  
 
 ---  
+### 🚀 **CI/CD Pipeline**  
+![CI/CD Pipeline](CICDpipeline.jpg)
+
+---
 
 ### 📡 **Tích Hợp Thông Báo Telegram**  
 - Gửi tin nhắn thông báo build thành công hoặc thất bại qua API Telegram.  
