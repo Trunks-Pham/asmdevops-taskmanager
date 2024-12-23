@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { fetchTasks, createTask, deleteTask } from './api';
-import { Container, TextField, Button, List, ListItem, ListItemText, IconButton, Typography, Paper, Box } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -26,43 +23,32 @@ function App() {
     };
 
     return (
-        <Container maxWidth="md">
+        <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
             {/* Tiêu đề */}
-            <Typography variant="h3" align="center" gutterBottom sx={{ marginTop: 4 }}>
-                📝 Task Manager
-            </Typography>
+            <h3 style={{ textAlign: 'center', marginBottom: '20px' }}>📝 Task Manager</h3>
             
             {/* Ô nhập liệu */}
-            <Paper elevation={3} sx={{ padding: 2, marginBottom: 4 }}>
-                <Box display="flex" gap={2}>
-                    <TextField
-                        fullWidth
-                        label="New Task"
-                        variant="outlined"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <Button variant="contained" color="primary" onClick={addTask} startIcon={<AddIcon />}>
-                        Add Task
-                    </Button>
-                </Box>
-            </Paper>
+            <div style={{ marginBottom: '20px' }}>
+                <input
+                    type="text"
+                    placeholder="New Task"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    style={{ width: '80%', padding: '10px', marginRight: '10px' }}
+                />
+                <button onClick={addTask} style={{ padding: '10px' }}>Add Task</button>
+            </div>
 
             {/* Danh sách Task */}
-            <Paper elevation={3} sx={{ padding: 2 }}>
-                <List>
-                    {tasks.map(task => (
-                        <ListItem key={task.ID} secondaryAction={
-                            <IconButton edge="end" color="error" onClick={() => removeTask(task.ID)}>
-                                <DeleteIcon />
-                            </IconButton>
-                        }>
-                            <ListItemText primary={task.Title} />
-                        </ListItem>
-                    ))}
-                </List>
-            </Paper>
-        </Container>
+            <ul style={{ listStyleType: 'none', padding: '0' }}>
+                {tasks.map(task => (
+                    <li key={task.ID} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #ccc' }}>
+                        {task.Title}
+                        <button onClick={() => removeTask(task.ID)} style={{ color: 'red' }}>Delete</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 
