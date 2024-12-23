@@ -18,7 +18,6 @@ func InitDB() {
 		log.Fatalf("Failed to remove existing database file: %v", err)
 	}
 
-	// Open a new database connection
 	DB, err = gorm.Open(sqlite.Open("tasksmnaa.db"), &gorm.Config{})
 	if err != nil {
 		panic("Failed to connect to database!")
