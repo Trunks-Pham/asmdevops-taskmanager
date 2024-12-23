@@ -6,6 +6,6 @@ COPY . .
 RUN go mod tidy
 RUN go build -o main .
 
-EXPOSE 8080
+EXPOSE 4000
 
 CMD ["./main"]

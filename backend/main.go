@@ -18,5 +18,5 @@ func main() {
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
 	r.Use(cors.New(config))
 
-	r.Run(":8080")
+	r.Run(":4000")
 }
