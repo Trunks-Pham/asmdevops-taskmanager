@@ -27,3 +27,9 @@ func InitDB() {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}
 }
+// func init() {
+// 	// Connect to the database
+// 	DB, err := gorm.Open("sqlite3", "tasks.db")
+// 	if err != nil {
+// 		panic("Failed to connect to database!")
+// 	}
