@@ -1,151 +1,153 @@
-# 📝 **Task Manager App**
+# 📝 **Task Manager Application**
 
-## 📚 **Giới thiệu**
+## 📚 **Introduction**
 
-Dự án **Task Manager App** là một ứng dụng quản lý công việc đơn giản, cung cấp các tính năng **CRUD** (Tạo, Xem, Cập nhật, Xóa) cho các tác vụ. Ứng dụng được xây dựng với:
+The **Task Manager App** is a user-friendly task management application that offers comprehensive **CRUD** (Create, Read, Update, Delete) functionalities. The application is developed using:
 
-- **Backend**: Golang (Gin Framework)  
-- **Frontend**: React.js  
-- **Cơ sở dữ liệu**: SQLite  
-- **Docker**: Đóng gói và triển khai ứng dụng với Docker & Docker Compose  
-
----
-
-## 🚀 **Tính Năng**
-
-- 📋 **Xem danh sách công việc**  
-- ➕ **Thêm công việc mới**  
-- ✏️ **Chỉnh sửa công việc**  
-- 🗑️ **Xóa công việc**  
-- ✅ **Đánh dấu hoàn thành công việc**  
+- **Backend:** Golang (Gin Framework)  
+- **Frontend:** React.js  
+- **Database:** SQLite  
+- **Containerization:** Docker & Docker Compose for seamless deployment  
 
 ---
 
-## 🛠️ **Cấu Trúc Dự Án**
+## 🚀 **Key Features**
+
+- 📋 **View Task List:** Display all tasks efficiently.  
+- ➕ **Add New Task:** Create and add tasks seamlessly.  
+- ✏️ **Edit Tasks:** Modify task details with ease.  
+- 🗑️ **Delete Tasks:** Remove tasks from the list.  
+- ✅ **Mark Task as Complete:** Track task completion status.  
+
+---
+
+## 🛠️ **Project Structure**
 
 ```plaintext
 task-manager/
-├── backend/          # Backend Golang
-│   ├── main.go       # Entry point backend
-│   ├── go.mod        # Dependencies
-│   ├── Dockerfile    # Docker config for backend
+├── backend/          # Golang Backend
+│   ├── main.go       # Backend entry point
+│   ├── go.mod        # Dependency management
+│   ├── Dockerfile    # Backend Docker configuration
 │   ├── database/
-│   │   └── database.go # Database configuration
-│   ├── handlers/     # API handlers
+│   │   └── database.go # Database setup
+│   ├── handlers/     # API request handlers
 │   ├── models/       # Database models
-│   ├── routes/       # API routes
+│   ├── routes/       # API route definitions
 │
-├── frontend/         # Frontend React
+├── frontend/         # React Frontend
 │   ├── src/
-│   │   ├── api.js    # API integration
-│   │   ├── App.js    # Main app component
-│   │   ├── index.js  # Entry point frontend
-│   ├── package.json  # Dependencies
-│   ├── Dockerfile    # Docker config for frontend
+│   │   ├── api.js    # API communication logic
+│   │   ├── App.js    # Core application component
+│   │   ├── index.js  # Frontend entry point
+│   ├── package.json  # Frontend dependencies
+│   ├── Dockerfile    # Frontend Docker configuration
 │
-└── docker-compose.yml # Docker Compose configuration
+└── docker-compose.yml # Docker Compose orchestration
 ```
+
 ---
-## 🚀 **Jenkinsfile – Điểm Nổi Bật**  
 
-1. **Môi Trường (Environment Variables)**  
-   - Sử dụng biến môi trường `BACKEND_IMAGE` và `FRONTEND_IMAGE` để định nghĩa tên ảnh Docker cho Backend và Frontend.  
+## 🚀 **Jenkinsfile – Key Highlights**
 
-2. **Các Giai Đoạn (Stages)**  
-   - **Clone Repository:** Sao chép mã nguồn từ nhánh `main` trên GitHub.  
-   - **Build Docker Images:** Xây dựng ảnh Docker cho Backend và Frontend.  
-   - **Push Docker Images:** Đẩy ảnh Docker lên Docker Hub với thông tin xác thực.  
-   - **Deploy to DEV:** Triển khai Backend và Frontend trên môi trường phát triển (DEV) bằng Docker.  
+1. **Environment Variables:**  
+   - Defined `BACKEND_IMAGE` and `FRONTEND_IMAGE` for Docker image names.  
 
-3. **Tích Hợp Kiểm Thử (Testing)**  
-   - Có một giai đoạn kiểm thử (`Run Tests`) để đảm bảo chất lượng mã nguồn.  
+2. **Pipeline Stages:**  
+   - **Clone Repository:** Fetch source code from the `main` branch.  
+   - **Build Docker Images:** Build images for both backend and frontend.  
+   - **Push Docker Images:** Push Docker images to Docker Hub.  
+   - **Deploy to DEV:** Deploy backend and frontend services in the development environment.  
 
-4. **Quản Lý Container và Mạng**  
-   - Tạo mạng Docker (`dev`) nếu chưa tồn tại.  
-   - Dừng và khởi chạy lại container Backend và Frontend.  
+3. **Testing Integration:**  
+   - Execute a dedicated `Run Tests` stage for quality assurance.  
 
-5. **Thông Báo Trạng Thái Build**  
-   - Sử dụng API Telegram để gửi thông báo kết quả build (thành công/thất bại).  
+4. **Container & Network Management:**  
+   - Create a Docker network (`dev`) if absent.  
+   - Restart backend and frontend containers as needed.  
 
-6. **Dọn Dẹp Workspace**  
-   - Luôn dọn dẹp workspace sau mỗi pipeline (`cleanWs`).  
+5. **Build Notifications:**  
+   - Utilize Telegram API for real-time build status notifications.  
 
----  
-### 🚀 **CI/CD Pipeline**  
+6. **Workspace Cleanup:**  
+   - Ensure a clean workspace after every pipeline run (`cleanWs`).  
+
+---
+
+## 🚀 **CI/CD Pipeline Overview**  
+
 ![CI/CD Pipeline](CICDpipeline.jpg)
 
 ---
 
-### 📡 **Tích Hợp Thông Báo Telegram**  
-- Gửi tin nhắn thông báo build thành công hoặc thất bại qua API Telegram.  
-- Tự động cảnh báo cho nhóm phát triển nếu pipeline gặp lỗi.  
- 
+## 📡 **Telegram Notification Integration**
+
+- Instant notifications for successful or failed builds via Telegram API.  
+- Automated alerts ensure the development team stays informed about pipeline status.  
+
 ---
 
-## 💻 **Cách Chạy Dự Án**
+## 💻 **How to Run the Project**
 
-### 🐳 **1. Chạy với Docker Compose**
+### 🐳 **1. Run with Docker Compose**
 
-1. **Clone dự án:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/Trunks-Pham/asm-devops-taskmanager.git
    cd task-manager
    ```
 
-2. **Chạy Docker Compose:**
+2. **Start services using Docker Compose:**
    ```bash
    docker-compose up --build
    ```
 
-3. **Truy cập ứng dụng:**
-   - Backend: [http://localhost:4000](http://localhost:4000)  
-   - Frontend: [http://localhost:3000](http://localhost:3000)  
+3. **Access the application:**
+   - **Backend:** [http://localhost:4000](http://localhost:4000)  
+   - **Frontend:** [http://localhost:3000](http://localhost:3000)  
 
 ---
 
-### 🛠️ **2. Chạy Backend và Frontend Thủ Công**
+### 🛠️ **2. Run Backend and Frontend Manually**
 
-#### ✅ **Chạy Backend:**
+#### ✅ **Start Backend:**
 ```bash
 cd backend
 go run main.go
 ```
+- API will be available at: [http://localhost:4000](http://localhost:4000)  
 
-API sẽ hoạt động tại: [http://localhost:4000](http://localhost:4000)  
-
-#### ✅ **Chạy Frontend:**
+#### ✅ **Start Frontend:**
 ```bash
 cd frontend
 npm install
 npm start
 ```
-
-Frontend sẽ hoạt động tại: [http://localhost:3000](http://localhost:3000)  
+- Frontend will be available at: [http://localhost:3000](http://localhost:3000)  
 
 ---
 
 ## 📦 **API Endpoints**
 
-| Method | Endpoint      | Mô Tả              |
-|--------|---------------|---------------------|
-| GET    | /tasks        | Lấy danh sách công việc |
-| POST   | /tasks        | Tạo công việc mới     |
-| PUT    | /tasks/:id    | Cập nhật công việc    |
-| DELETE | /tasks/:id    | Xóa công việc         |
+| **Method** | **Endpoint**  | **Description**       |
+|------------|--------------|-----------------------|
+| **GET**    | `/tasks`     | Retrieve all tasks    |
+| **POST**   | `/tasks`     | Create a new task     |
+| **PUT**    | `/tasks/:id` | Update an existing task |
+| **DELETE** | `/tasks/:id` | Remove a task         |
 
 ---
 
-## 🛡️ **Bảo Mật**
+## 🛡️ **Security Measures**
 
-- Sử dụng biến môi trường cho thông tin nhạy cảm  
-- Xác thực và phân quyền (có thể mở rộng)  
-- Validate dữ liệu đầu vào  
+- **Environment Variables:** Sensitive credentials are securely managed.  
+- **Authentication & Authorization:** Easily extendable for role-based access.  
+- **Data Validation:** Input data is rigorously validated.  
 
 ---
 
-## 📞 **Liên Hệ**
+## 📞 **Contact Information**
 
-- **Tác giả**: Phạm Minh Thảo  
-- **Email**: minhthaopham230104@gmail.com  
-- **GitHub**: [github.com/Trunks-Pham](https://github.com/Trunks-Pham)  
-```
+- **Author:** Phạm Minh Thảo  
+- **Email:** minhthaopham230104@gmail.com  
+- **GitHub:** [github.com/Trunks-Pham](https://github.com/Trunks-Pham)  
